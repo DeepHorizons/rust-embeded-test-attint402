@@ -1,0 +1,27 @@
+[package]
+name = "rust-embeded-test-attint402"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+panic-halt = "0.2.0"
+ufmt = "0.1.0"
+nb = "0.1.2"
+embedded-hal = "0.2.3"
+attiny-hal = { path = "../../git/avr-hal/mcu/attiny-hal", features = ["attiny202", "rt"] }
+
+[profile.dev]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 2
+lto = true
+opt-level = 2
+debug = true
+strip = false
